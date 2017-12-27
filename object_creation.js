@@ -72,3 +72,53 @@ Manager.salary = 5000;
 Manager.setAdminAccess = 'true';
 
 console.log(Manager.getEmpInfo());
+
+
+/**** setPrototype method *****/
+let toyota = {
+    drive() {
+        return 'driving toyota';
+    }
+};
+
+let camry = {
+    wifi() {
+        return 'camry';
+    }
+};
+
+// Set toyota's __proto__ to camry's  __proto__'s  __proto__
+Object.setPrototypeOf(camry, toyota);
+
+// Add a new Method to toyota object
+toyota.newMethod = function () {
+    return 'new method from toyota';
+};
+
+console.log(camry.newMethod()); // Prints 'new method from toyota'
+
+/**** Prototype chain ****/
+const car = function () {}
+car.prototype = {
+    print(){
+        return "I am a car";
+    }
+};
+
+const ToyCar = function () {}
+ToyCar.prototype = object.create(Car.prototype);
+ToyCar.prototype.print = function () {
+    return "I'm a toy car";
+};
+
+const ToyTransformer = function(){}
+ToyTransformer.prototype = object.create(Car.prototype);
+ToyTransformer.prototype.print = function () {
+    return "I'm a transformer car";
+};
+
+const toyota = new car();
+const legoCar = new ToyCar();
+const optimusPrime = new ToyTransformer();
+
+console.log(toyota.print())
